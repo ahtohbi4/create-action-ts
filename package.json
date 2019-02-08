@@ -2,9 +2,10 @@
   "name": "create-action-ts",
   "version": "0.1.0",
   "description": "",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/ahtohbi4/create-action-ts/issues"
   },
-  "homepage": "https://github.com/ahtohbi4/create-action-ts#readme"
+  "homepage": "https://github.com/ahtohbi4/create-action-ts#readme",
+  "devDependencies": {
+    "typescript": "^3.3.3"
+  },
+  "peerDependencies": {
+    "typescript": ">=2.0"
+  }
 }
