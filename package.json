@@ -1,7 +1,7 @@
 {
   "name": "create-action-ts",
   "version": "0.4.0",
-  "description": "",
+  "description": "Helper to create typed actions creators in React+Redux+TypeScript apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -17,6 +17,13 @@
     "name": "Alexandr Antonov",
     "email": "alexandr-post@yandex.ru"
   },
+  "keywords": [
+    "typescript",
+    "react",
+    "redux",
+    "action",
+    "action creator"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ahtohbi4/create-action-ts/issues"

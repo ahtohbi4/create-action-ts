@@ -1,7 +1,7 @@
 create-action-ts
 ===
 
-> Helper to create typed actions creators.
+> Helper to create typed actions creators in React+Redux+TypeScript apps.
 
 ## Install
 
