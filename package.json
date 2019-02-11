@@ -1,6 +1,6 @@
 {
   "name": "create-action-ts",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Helper to create typed actions creators in React+Redux+TypeScript apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
