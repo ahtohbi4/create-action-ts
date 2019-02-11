@@ -3,21 +3,26 @@
   "version": "0.2.0",
   "description": "",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf dist && tsc",
     "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ahtohbi4/create-action-ts.git"
   },
-  "author": "",
-  "license": "SEE LICENSE IN LICENSE",
+  "author": {
+    "name": "Alexandr Antonov",
+    "email": "alexandr-post@yandex.ru"
+  },
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ahtohbi4/create-action-ts/issues"
   },
   "homepage": "https://github.com/ahtohbi4/create-action-ts#readme",
   "devDependencies": {
+    "rimraf": "^2.6.3",
     "typescript": "^3.3.3"
   },
   "peerDependencies": {
