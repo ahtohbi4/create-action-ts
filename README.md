@@ -1,7 +1,7 @@
 create-action-ts
 ===
 
-> Helper to create typed actions creators in React+Redux+TypeScript apps.
+> Helper to create typed actions or action creators in React+Redux+TypeScript apps.
 
 ## Install
 
@@ -19,8 +19,54 @@ $ yarn add create-action-ts
 
 ## Usage
 
+##### Syntax
+
+```typescript
+createAction(type[, payload, meta]);
+```
+
+Parameters:
+
+ * `type` — **Required**. String type of action.
+ * `payload` — Any type of payload.
+ * `meta` — Any type of meta information.
+
+##### Create action
+
+```typescript
+const action = createAction('counter', 5);
+
+// -> { type: "counter", payload: 5 }
+```
+
+##### Create action creators
+
+```typescript
+const actionCreator = (count: string) => createAction('counter', count);
+
+// -> (count: string): { type: "counter", payload: string }
+```
+
+##### Example
+
+Let's say, you have a structure of the container below:
+
+```text
+├─ components
+└─ containers
+    └─ SomePage
+        ├─ actions.ts
+        ├─ constants.ts
+        ├─ index.tsx
+        ├─ reducer.ts
+        └─ types.ts
+```
+
+1. Describe possible action keys by `enum` from TypeScript:
+
 ```typescript
 /* constants.ts */
+
 export enum ActionKeys {
     SET_USER_INFO = 'SET_USER_INFO',
     RESET_USER_INFO = 'RESET_USER_INFO',
@@ -28,8 +74,11 @@ export enum ActionKeys {
 }
 ```
 
+2. Create action creators by `createAction()` function:
+
 ```typescript
 /* actions.ts */
+
 import createAction from 'create-action-ts';
 
 import { ActionKeys } from 'constants.ts';
@@ -38,20 +87,34 @@ import { ActionKeys } from 'constants.ts';
 export const setUserInfo = (id: string) => createAction(ActionKeys.SET_USER_INFO, id);
 export const resetUserInfo = () => createAction(ActionKeys.RESET_USER_INFO);
 export const toggleAccordion = (meta: { name: string }) => createAction(ActionKeys.TOGGLE_ACCORDION, null, meta);
-
-/* Create Type alias for action. */
-export type ActionType =
-    ReturnType<typeof setUserInfo> &
-    ReturnType<typeof resetUserInfo> &
-    ReturnType<typeof toggleAccordion>;
 ```
+
+3. Describe all types by the action creators we need:
+
+```typescript
+/* types.ts */
+import { resetUserInfo, setUserInfo, toggleAccordion } from 'actions.ts';
+
+export type SetUserInfoActionCreator = typeof setUserInfo;
+export type ResetUserInfoActionCreator = typeof resetUserInfo;
+export type ToggleAccordionActionCreator = typeof toggleAccordion;
+
+export type ActionType =
+    ReturnType<SetUserInfoActionCreator> &
+    ReturnType<ResetUserInfoActionCreator> &
+    ReturnType<ToggleAccordionActionCreator>;
+```
+
+4. Use the action creators types in reducer:
 
 ```typescript
 /* reducer.ts */
 import { ActionKeys } from 'constants.ts';
-import { ActionType } from 'actions.ts';
+import { ActionType, StoreType } from 'types.ts';
 
-/* ... */
+const initialState: StoreType = {
+    /* ... */
+};
 
 /* Use ActionType for checking actions type. */
 export default function reducer(state: StoreType = initialState, action: ActionType) {
@@ -61,19 +124,21 @@ export default function reducer(state: StoreType = initialState, action: ActionT
 }
 ```
 
+container's template:
+
 ```typescript jsx
 /* index.tsx */
 import React, { PureComponent } from 'react';
 
-import * as actions from 'actions.ts';
+import { SetUserInfoActionCreator, ResetUserInfoActionCreator, ToggleAccordionActionCreator } from 'types.ts';
 
 interface PropsType {
     /**
     * Use type of Action creators from actions.ts for checking props types.
     */
-    resetUserInfo: typeof actions.resetUserInfo,
-    setUserInfo: typeof actions.setUserInfo,
-    toggleAccordion: typeof actions.toggleAccordion,
+    resetUserInfo: ResetUserInfoActionCreator,
+    setUserInfo: SetUserInfoActionCreator,
+    toggleAccordion: ToggleAccordionActionCreator,
 }
 
 class Page extends PureComponent<PropsType> {
@@ -86,6 +151,8 @@ class Page extends PureComponent<PropsType> {
     }
 }
 ```
+
+or anywhere else...
 
 ## Test
 
