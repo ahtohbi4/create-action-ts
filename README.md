@@ -1,10 +1,14 @@
 create-action-ts
 ===
 
-[![Travis Build Status][travis-img]][travis-url]
+[![NPM version][version-img]][version-url] [![Dependency status][dependency-img]][dependency-url] [![Travis build status][travis-img]][travis-url]
 
-[travis-img]: https://travis-ci.org/ahtohbi4/matrix-slicer.svg?branch=master
-[travis-url]: https://travis-ci.org/ahtohbi4/matrix-slicer
+[dependency-img]: https://david-dm.org/ahtohbi4/create-action-ts/dev-status.svg
+[dependency-url]: https://david-dm.org/ahtohbi4/create-action-ts#info=devDependencies
+[version-img]: https://badge.fury.io/js/create-action-ts.svg
+[version-url]: https://badge.fury.io/js/create-action-ts
+[travis-img]: https://travis-ci.org/ahtohbi4/create-action-ts.svg?branch=master
+[travis-url]: https://travis-ci.org/ahtohbi4/create-action-ts
 
 > Helper to create typed actions or action creators in React+Redux+TypeScript apps.
 
