@@ -1,6 +1,11 @@
 create-action-ts
 ===
 
+[![Travis Build Status][travis-img]][travis-url]
+
+[travis-img]: https://travis-ci.org/ahtohbi4/matrix-slicer.svg?branch=master
+[travis-url]: https://travis-ci.org/ahtohbi4/matrix-slicer
+
 > Helper to create typed actions or action creators in React+Redux+TypeScript apps.
 
 ## Install
