@@ -4,6 +4,11 @@
   "description": "Helper to create typed actions creators in React+Redux+TypeScript apps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "build": "rimraf dist && tsc",
     "prepare": "npm run build",
