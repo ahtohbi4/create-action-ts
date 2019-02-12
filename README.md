@@ -30,13 +30,13 @@ $ yarn add create-action-ts
 
 ##### Syntax
 
-```typescript
+```text
 createAction(type[, payload, meta]);
 ```
 
 Parameters:
 
- * `type` — **Required**. String type of action.
+ * `type` — **Required**. String as a type of the action.
  * `payload` — Any type of payload.
  * `meta` — Any type of meta information.
 
@@ -83,25 +83,24 @@ export enum ActionKeys {
 }
 ```
 
-2. Create action creators by `createAction()` function:
+2. Create Action creators by `createAction()` function:
 
 ```typescript
 /* actions.ts */
 
 import createAction from 'create-action-ts';
-
 import { ActionKeys } from 'constants.ts';
 
-/* Create typed action creators. */
 export const setUserInfo = (id: string) => createAction(ActionKeys.SET_USER_INFO, id);
 export const resetUserInfo = () => createAction(ActionKeys.RESET_USER_INFO);
 export const toggleAccordion = (meta: { name: string }) => createAction(ActionKeys.TOGGLE_ACCORDION, null, meta);
 ```
 
-3. Describe all types by the action creators we need:
+3. Describe all types of the Action creators and the Actions we need:
 
 ```typescript
 /* types.ts */
+
 import { resetUserInfo, setUserInfo, toggleAccordion } from 'actions.ts';
 
 export type SetUserInfoActionCreator = typeof setUserInfo;
@@ -114,22 +113,16 @@ export type ActionType =
     ReturnType<ToggleAccordionActionCreator>;
 ```
 
-4. Use the action creators types in reducer:
+4. Use the types in reducer:
 
 ```typescript
 /* reducer.ts */
+
 import { ActionKeys } from 'constants.ts';
 import { ActionType, StoreType } from 'types.ts';
 
-const initialState: StoreType = {
-    /* ... */
-};
-
-/* Use ActionType for checking actions type. */
-export default function reducer(state: StoreType = initialState, action: ActionType) {
-    switch (action.type) {
-        /* ... */
-    }
+export default function reducer(state: StoreType, action: ActionType) {
+    switch (action.type) { /* ... */ }
 }
 ```
 
@@ -137,27 +130,18 @@ container's template:
 
 ```typescript jsx
 /* index.tsx */
-import React, { PureComponent } from 'react';
 
+import React, { PureComponent } from 'react';
 import { SetUserInfoActionCreator, ResetUserInfoActionCreator, ToggleAccordionActionCreator } from 'types.ts';
 
 interface PropsType {
-    /**
-    * Use type of Action creators from actions.ts for checking props types.
-    */
     resetUserInfo: ResetUserInfoActionCreator,
     setUserInfo: SetUserInfoActionCreator,
     toggleAccordion: ToggleAccordionActionCreator,
 }
 
 class Page extends PureComponent<PropsType> {
-    render() {
-        return (
-            <div>
-                /* ... */
-            </div>
-        );
-    }
+    render() { /* ... */ }
 }
 ```
 
