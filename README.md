@@ -108,8 +108,8 @@ export type ResetUserInfoActionCreator = typeof resetUserInfo;
 export type ToggleAccordionActionCreator = typeof toggleAccordion;
 
 export type ActionType =
-    ReturnType<SetUserInfoActionCreator> &
-    ReturnType<ResetUserInfoActionCreator> &
+    ReturnType<SetUserInfoActionCreator> |
+    ReturnType<ResetUserInfoActionCreator> |
     ReturnType<ToggleAccordionActionCreator>;
 ```
 
