@@ -10,10 +10,12 @@
     "README.md"
   ],
   "scripts": {
-    "lint": "tslint --config ./tslint.json --project ./tsconfig.json ./**/*.ts",
+    "lint": "tslint --config ./tslint.json ./**/*.ts",
     "build": "rimraf dist && tsc",
     "prepare": "npm run build",
-    "test": "mocha -r ts-node/register test/**/*.ts"
+    "test": "mocha -r ts-node/register test/**/*.ts",
+    "type-check": "tsc --noEmit",
+    "ci": "npm run type-check && npm run lint && npm run test"
   },
   "husky": {
     "hooks": {
@@ -22,7 +24,7 @@
   },
   "lint-staged": {
     "*.ts": [
-      "npm run lint"
+      "npm run ci"
     ]
   },
   "repository": {
