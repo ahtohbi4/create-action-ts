@@ -1,5 +1,5 @@
-import 'mocha';
 import { expect } from 'chai';
+import 'mocha';
 
 import createAction from '../src';
 
@@ -28,14 +28,14 @@ describe('The function createAction()', () => {
     it('should return the action creator for an Action with meta', () => {
         const actionCreator = (meta: object) => createAction(ActionKeys.WITH_META, null, meta);
         const action = actionCreator({
-            form: 'some-form',
             field: 'some-field',
+            form: 'some-form',
         });
 
         expect(action).to.deep.equal({
             meta: {
-                form: 'some-form',
                 field: 'some-field',
+                form: 'some-form',
             },
             type: 'actionWithMeta',
         });
@@ -43,12 +43,12 @@ describe('The function createAction()', () => {
 
     it('should return the action creator for an Action with meta and payload', () => {
         interface Meta {
-            entity: string,
+            entity: string;
         }
         interface Payload {
-            data: Array<object>,
-            page: number,
-            pages: number,
+            data: object[];
+            page: number;
+            pages: number;
         }
         const actionCreator = (payload: Payload, meta: Meta) => createAction(ActionKeys.WITH_META, payload, meta);
         const action = actionCreator({

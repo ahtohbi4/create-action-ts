@@ -1,13 +1,13 @@
 interface Action<T extends string> {
-    type: T,
+    type: T;
 }
 
 interface ActionWithPayload<T extends string, P> extends Action<T> {
-    payload: P,
+    payload: P;
 }
 
 interface ActionWithMeta<T extends string, P, M> extends ActionWithPayload<T, P> {
-    meta: M,
+    meta: M;
 }
 
 function createAction<T extends string>(type: T): Action<T>;
