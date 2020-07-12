@@ -13,6 +13,7 @@
     "lint": "tslint --config ./tslint.json ./**/*.ts",
     "build": "rimraf dist && tsc",
     "prepare": "npm run build",
+    "prepublishOnly": "git push && git push --tags",
     "test": "jest --coverage",
     "type-check": "tsc --noEmit",
     "ci": "npm run type-check && npm run lint && npm run test"
